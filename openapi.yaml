@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  title: SmartAssist Notes API
+  version: 1.0.0
+  description: REST API серверної частини застосунку SmartAssist для керування нотатками (ЛР №3)
+servers:
+  - url: http://localhost:3000
+paths:
+  /api/notes:
+    get:
+      summary: Отримати всі нотатки з бази даних
+      responses:
+        '200':
+          description: Успішне отримання списку нотаток
+    post:
+      summary: Створити нову нотатку
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: "Нова нотатка з API"
+                content:
+                  type: string
+                  example: "Текст нотатки, збережений через Express"
+      responses:
+        '201':
+          description: Нотатку успішно створено
+  /api/notes/{id}:
+    delete:
+      summary: Видалити нотатку за ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Нотатку видалено
+          
